@@ -25,7 +25,7 @@ namespace TestListViewMemoryLeak
 
         private async Task StartReloadWorkerAsync()
         {
-            while (true)
+            for (int i = 0; i < 10; i++)
             {
                 await Task.Delay(5000);
                 await RealodAsync();

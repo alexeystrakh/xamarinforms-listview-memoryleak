@@ -9,5 +9,6 @@
     <ListView
         x:Name="myListView"
         HasUnevenRows="True"
+        IsGroupingEnabled="True"
         ItemsSource="{Binding MyItems}" />
 </ContentPage>

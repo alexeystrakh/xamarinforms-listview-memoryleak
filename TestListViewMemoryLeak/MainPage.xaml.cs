@@ -14,7 +14,7 @@ namespace TestListViewMemoryLeak
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public ObservableCollection<MyTestItem> MyItems { get; } = new ObservableCollection<MyTestItem>();
+        public ObservableCollection<List<MyTestItem>> MyItems { get; } = new ObservableCollection<List<MyTestItem>>();
 
         public MainPage()
         {
@@ -37,9 +37,21 @@ namespace TestListViewMemoryLeak
             System.Diagnostics.Debug.WriteLine($"Loading data...");
             await Task.Delay(1000);
             MyItems.Clear();
-            MyItems.Add(new MyTestItem { Name = "Item 1" });
-            MyItems.Add(new MyTestItem { Name = "Item 2" });
-            MyItems.Add(new MyTestItem { Name = "Item 3" });
+
+            var group1 = new List<MyTestItem>
+            {
+                new MyTestItem { Name = $"Item {Environment.TickCount}" },
+                new MyTestItem { Name = $"Item {Environment.TickCount}" }
+            };
+            var group2 = new List<MyTestItem>
+            {
+                new MyTestItem { Name = $"Item {Environment.TickCount}" },
+                new MyTestItem { Name = $"Item {Environment.TickCount}" },
+                new MyTestItem { Name = $"Item {Environment.TickCount}" },
+            };
+
+            MyItems.Add(group1);
+            MyItems.Add(group2);
             System.Diagnostics.Debug.WriteLine($"Loaded!");
         }
     }

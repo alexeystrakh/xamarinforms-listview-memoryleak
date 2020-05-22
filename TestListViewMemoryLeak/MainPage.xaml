@@ -6,8 +6,11 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <ListView
-        x:Name="myListView"
-        HasUnevenRows="True"
-        ItemsSource="{Binding MyItems}" />
+    <StackLayout
+        HorizontalOptions="Center"
+        Orientation="Vertical"
+        VerticalOptions="Center">
+        <Label Text="Welcome to Xamarin.Forms memory leak demo" />
+        <Button Clicked="Button_Clicked" Text="Show me ListView" />
+    </StackLayout>
 </ContentPage>

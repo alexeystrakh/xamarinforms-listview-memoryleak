@@ -14,38 +14,15 @@ namespace TestListViewMemoryLeak
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public ObservableCollection<MyTestItem> MyItems { get; } = new ObservableCollection<MyTestItem>();
-
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = this;
-            StartReloadWorkerAsync();
         }
 
-        private async Task StartReloadWorkerAsync()
+        private void Button_Clicked(System.Object sender, System.EventArgs e)
         {
-            while (true)
-            {
-                await Task.Delay(5000);
-                await RealodAsync();
-            }
+            var detailsPage = new DetailsPage();
+            Navigation.PushAsync(detailsPage);
         }
-
-        private async Task RealodAsync()
-        {
-            System.Diagnostics.Debug.WriteLine($"Loading data...");
-            await Task.Delay(1000);
-            MyItems.Clear();
-            MyItems.Add(new MyTestItem { Name = "Item 1" });
-            MyItems.Add(new MyTestItem { Name = "Item 2" });
-            MyItems.Add(new MyTestItem { Name = "Item 3" });
-            System.Diagnostics.Debug.WriteLine($"Loaded!");
-        }
-    }
-
-    public class MyTestItem
-    {
-        public string Name { get; set; }
     }
 }
